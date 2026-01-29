@@ -9,7 +9,7 @@ class BasePage:
     def open(self):
         self.driver.get(self.url)
 
-    def is_element_present(self, how, what):
+    def is_element_presented(self, how, what):
         try:
             self.driver.find_element(how, what)
         except NoSuchElementException:
