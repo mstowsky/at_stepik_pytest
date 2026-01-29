@@ -8,4 +8,4 @@ class MainPage(BasePage):
         login_link.click()
 
     def should_be_login_link(self):
-        self.driver.find_element(By.ID, 'login_link_invalid') #на данном этапе специально указан неверный селектор login_link_invalid
+        assert self.is_element_present(By.ID, 'login_link'), 'Login link is not found'
