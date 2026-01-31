@@ -18,6 +18,12 @@ class BasePage:
         login_link = self.driver.find_element(*BasePageLocators.LOGIN_LINK)
         login_link.click()
 
+    def go_to_cart_page(self):
+        from .cart_page import CartPage
+        cart_button = self.driver.find_element(*BasePageLocators.CART_BUTTON)
+        cart_button.click()
+        return CartPage(self.driver, self.driver.current_url)
+
     def is_element_present(self, how, what):
         try:
             self.driver.find_element(how, what)
