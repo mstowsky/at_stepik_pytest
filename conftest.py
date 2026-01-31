@@ -1,7 +1,11 @@
+import sys
+import os
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 def pytest_addoption(parser):
     parser.addoption('--browser_name', action='store', default='chrome',
