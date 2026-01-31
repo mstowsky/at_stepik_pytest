@@ -1,5 +1,5 @@
 import time
-from .pages.login_page import LoginPage
+from pages.login_page import LoginPage
 
 url = 'http://selenium1py.pythonanywhere.com/accounts/login/'
 
