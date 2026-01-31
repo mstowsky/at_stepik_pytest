@@ -34,3 +34,13 @@ def test_guest_can_add_product_to_basket(browser, url):
     page.should_be_product_added_message()
     page.added_product_name_should_be_equal_product_name()
     page.cart_price_message_should_be_equal_product_price()
+
+def test_guest_should_see_login_link_on_product_page(browser):
+    page = ProductPage(browser, url_src)
+    page.open()
+    page.should_be_login_link()
+
+def test_guest_can_go_to_login_page_from_product_page(browser):
+    page = ProductPage(browser, url_src)
+    page.open()
+    page.go_to_login_page()

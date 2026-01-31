@@ -14,7 +14,7 @@ class LoginPage(BasePage):
         assert login_string in current_url, f'Substring \'{login_string}\' is not found in current url: {current_url}'
 
     def should_be_login_form(self):
-        assert self.is_element_presented(*LoginPageLocators.LOGIN_FORM), 'Login form is not found'
+        assert self.is_element_present(*LoginPageLocators.LOGIN_FORM), 'Login form is not found'
 
     def should_be_register_form(self):
-        assert self.is_element_presented(*LoginPageLocators.REGISTER_FORM), 'Register form is not found'
+        assert self.is_element_present(*LoginPageLocators.REGISTER_FORM), 'Register form is not found'
