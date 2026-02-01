@@ -15,7 +15,7 @@ class BasePage:
         self.driver.get(self.url)
 
     def should_be_authorized_user(self):
-        assert self.is_element_present(*BasePageLocators.AUTH_USER_ICON), 'User icon is not found, probably user is not authorized'
+        assert self.is_element_present(*BasePageLocators.AUTH_USER_ICON), 'User icon is not found, probably user is not authorized.'
 
     def go_to_login_page(self):
         login_link = self.driver.find_element(*BasePageLocators.LOGIN_LINK)
@@ -49,7 +49,7 @@ class BasePage:
         return True
 
     def should_be_login_link(self):
-        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), 'Login link is not found'
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), 'Login link is not found.'
 
     def solve_quiz_and_get_code(self):
         alert = self.driver.switch_to.alert

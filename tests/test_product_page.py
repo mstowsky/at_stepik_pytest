@@ -4,7 +4,6 @@ from datetime import datetime
 from conftest import browser
 from pages.login_page import LoginPage
 from pages.product_page import ProductPage
-from pages.locators import BasePageLocators
 
 url_login = 'http://selenium1py.pythonanywhere.com/accounts/login/'
 url_src = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
@@ -17,7 +16,7 @@ url_offers_list = []
 for i in range(10):
     url_offers_list.append(url_src+url_offer+str(i))
 
-# Записываем заранее известные баги, чтобы проставить им пометку xfail
+# Записываем заранее известные промо-страницы с багами, чтобы проставить им пометку xfail
 xfail_list = ['offer7']
 
 @pytest.mark.user_guest
@@ -35,10 +34,10 @@ class TestGuestTests:
     def test_guest_can_add_product_to_cart_offers(self, browser, url):
         print(f'Start test for offer: {url[-6:]}')
 
-        # Если ссылка из списка известных багов, то проставляем метку xfail
+        # Если ссылка из списка известных страниц с багом, то проставляем метку xfail
         for i in xfail_list:
             if i in url:
-                pytest.xfail(f'Known bug in page \'{i}\'')
+                pytest.xfail(f'There is known bug in page \'{i}\'')
 
         page = ProductPage(browser, url)
         page.open()
@@ -67,6 +66,7 @@ class TestGuestTests:
         cart_page.should_be_empty_cart_message()
 
     @pytest.mark.negative
+    @pytest.mark.xfail(reason='This test is \'obviously incorrect\'. It needs only to show fow \'xfail\' mark works.')
     def test_guest_cant_see_product_added_message_after_adding_product_to_cart(self, browser):
         page = ProductPage(browser, url_src)
         page.open()
@@ -81,6 +81,7 @@ class TestGuestTests:
         page.should_not_be_product_added_message()
 
     @pytest.mark.negative
+    @pytest.mark.xfail(reason='This test is \'obviously incorrect\'. It needs only to show fow \'xfail\' mark works.')
     def test_product_added_message_disappeared_after_adding_product_to_cart(self, browser):
         page = ProductPage(browser, url_src)
         page.open()
