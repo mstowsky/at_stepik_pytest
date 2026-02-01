@@ -4,6 +4,8 @@ class BasePageLocators:
     LOGIN_LINK = (By.ID, 'login_link')
     LOGIN_LINK_INVALID = (By.ID, 'login_link_invalid')
     CART_BUTTON = (By.CSS_SELECTOR, '.basket-mini a')
+    AUTH_USER_ICON = (By.CSS_SELECTOR, '.icon-user')
+    SUCCESS_REGISTER_MESSAGE = (By.CSS_SELECTOR, '.alertinner')
 
 class MainPageLocators:
     pass
@@ -11,6 +13,10 @@ class MainPageLocators:
 class LoginPageLocators:
     LOGIN_FORM = (By.ID, 'login_form')
     REGISTER_FORM = (By.ID, 'register_form')
+    REGISTER_EMAIL_INPUT = (By.ID, 'id_registration-email')
+    REGISTER_PASSWORD1_INPUT = (By.ID, 'id_registration-password1')
+    REGISTER_PASSWORD2_INPUT = (By.ID, 'id_registration-password2')
+    REGISTER_SUBMIT_BUTTON = (By.NAME, 'registration_submit')
 
 class ProductPageLocators:
     ADD_TO_CART_BUTTON = (By.CSS_SELECTOR, '#add_to_basket_form button')
