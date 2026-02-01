@@ -22,7 +22,7 @@ xfail_list = ['offer7']
 
 @pytest.mark.user_guest
 class TestGuestTests:
-    def test_guest_can_add_product_to_basket(self, browser):
+    def test_guest_can_add_product_to_cart(self, browser):
         page = ProductPage(browser, url_src)
         page.open()
         page.add_to_cart()
@@ -32,7 +32,7 @@ class TestGuestTests:
         page.cart_price_message_should_be_equal_product_price()
 
     @pytest.mark.parametrize('url', url_offers_list)
-    def test_guest_can_add_product_to_basket_offers(self, browser, url):
+    def test_guest_can_add_product_to_cart_offers(self, browser, url):
         print(f'Start test for offer: {url[-6:]}')
 
         # Если ссылка из списка известных багов, то проставляем метку xfail
