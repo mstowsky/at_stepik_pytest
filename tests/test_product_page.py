@@ -23,6 +23,9 @@ xfail_list = ['offer7']
 class TestGuestTests:
     @pytest.mark.need_review
     def test_guest_can_add_product_to_cart(self, browser):
+        '''
+        Гость может добавить товар в корзину, находясь на странице товара
+        '''
         page = ProductPage(browser, url_src)
         page.open()
         page.add_to_cart()
@@ -33,6 +36,9 @@ class TestGuestTests:
 
     @pytest.mark.parametrize('url', url_offers_list)
     def test_guest_can_add_product_to_cart_offers(self, browser, url):
+        '''
+        Гость может добавить товар в корзину, находясь на странице товара с применением пром-акции
+        '''
         print(f'Start test for offer: {url[-6:]}')
 
         # Если ссылка из списка известных страниц с багом, то проставляем метку xfail
@@ -50,18 +56,27 @@ class TestGuestTests:
         page.cart_price_message_should_be_equal_product_price()
 
     def test_guest_should_see_login_link_on_product_page(self, browser):
+        '''
+        Гость видит ссылку на страницу авторизации, находясь на главной странице
+        '''
         page = ProductPage(browser, url_src)
         page.open()
         page.should_be_login_link()
 
     @pytest.mark.need_review
     def test_guest_can_go_to_login_page_from_product_page(self, browser):
+        '''
+        Гость может перейти на страницу авторизации со страницы товара
+        '''
         page = ProductPage(browser, url_src)
         page.open()
         page.go_to_login_page()
 
     @pytest.mark.need_review
     def test_guest_cant_see_product_in_cart_opened_from_product_page(self, browser):
+        '''
+        Гость видит пустую корзину, которая была открыта со страницы товара
+        '''
         page = ProductPage(browser, url_src)
         page.open()
         cart_page = page.go_to_cart_page()
@@ -71,6 +86,9 @@ class TestGuestTests:
     @pytest.mark.negative
     @pytest.mark.xfail(reason='This test is \'obviously incorrect\'. It needs only to show fow \'xfail\' mark works.')
     def test_guest_cant_see_product_added_message_after_adding_product_to_cart(self, browser):
+        '''
+        Негативный. Гость не видит сообщение "товар добавлен" после добавления товара в корзину
+        '''
         page = ProductPage(browser, url_src)
         page.open()
         page.add_to_cart()
@@ -79,6 +97,9 @@ class TestGuestTests:
 
     @pytest.mark.negative
     def test_guest_cant_see_product_added_message(self, browser):
+        '''
+        Негативный. Гость не видит сообщение "товар добавлен"
+        '''
         page = ProductPage(browser, url_src)
         page.open()
         page.should_not_be_product_added_message()
@@ -86,6 +107,9 @@ class TestGuestTests:
     @pytest.mark.negative
     @pytest.mark.xfail(reason='This test is \'obviously incorrect\'. It needs only to show fow \'xfail\' mark works.')
     def test_product_added_message_disappeared_after_adding_product_to_cart(self, browser):
+        '''
+        Негативный. Сообщение "товар добавлен" исчезает после добавления товара в корзину
+        '''
         page = ProductPage(browser, url_src)
         page.open()
         page.add_to_cart()
@@ -96,6 +120,9 @@ class TestGuestTests:
 class TestAuthorizedUserTests:
     @pytest.fixture(scope='function', autouse=True)
     def setup(self, browser):
+        '''
+        Регистрация нового пользователя
+        '''
         print('Start setup for authorization test')
         page = LoginPage(browser, url_login)
         page.open()
@@ -106,6 +133,9 @@ class TestAuthorizedUserTests:
 
     @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
+        '''
+        Авторизованный пользователь может добавить товар в корзину
+        '''
         page = ProductPage(browser, url_src)
         page.open()
         page.add_to_cart()
@@ -116,6 +146,11 @@ class TestAuthorizedUserTests:
 
     @pytest.mark.negative
     def test_user_cant_see_product_added_message(self, browser):
+        '''
+        Негативный. Авторизованный пользователь не видит сообщение "товар добавлен" после открытия страницы товара
+        :param browser:
+        :return:
+        '''
         page = ProductPage(browser, url_src)
         page.open()
         page.should_not_be_product_added_message()
